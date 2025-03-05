@@ -44,6 +44,10 @@ public class JavaExercisesTest {
 
         assertThat(order3).isNotNull();
         assertThat(order3).hasLength(3);
+
+        for (String s: order3) {
+            assertThat(s).isNull();
+        }
     }
 
     @Test
@@ -55,6 +59,15 @@ public class JavaExercisesTest {
 
         int[] test2 = new int[]{2, 4, 6, 8};
         assertThat(JavaExercises.findMinMax(test2)).isEqualTo(6);
+
+        int[] test3 = new int[]{11, 2, 3, 1, 5, 6};
+        assertThat(JavaExercises.findMinMax(test3)).isEqualTo(10);
+
+        int[] test4 = new int[]{4, 4, 4, 4};
+        assertThat(JavaExercises.findMinMax(test4)).isEqualTo(0);
+
+        int[] test5 = new int[]{1};
+        assertThat(JavaExercises.findMinMax(test5)).isEqualTo(0);
     }
 
     @Test
