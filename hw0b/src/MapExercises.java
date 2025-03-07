@@ -1,6 +1,3 @@
-import edu.princeton.cs.algs4.In;
-import org.apache.commons.collections.map.HashedMap;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +9,7 @@ public class MapExercises {
      */
     public static Map<Character, Integer> letterToNum() {
         Map<Character, Integer> result = new HashMap<>();
-        for (int i = 0; i <= 25; i++) {
+        for (int i = 0; i <= 'z' - 'a'; i++) {
             result.put((char) ('a' + i), i + 1);
         }
         return result;

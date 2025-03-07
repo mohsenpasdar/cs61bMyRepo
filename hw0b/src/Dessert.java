@@ -2,7 +2,7 @@ public class Dessert {
     private int flavor;
     private int price;
 
-    public static int numDesserts = 0;
+    private static int numDesserts = 0;
 
     public Dessert(int flavor, int price) {
         this.flavor = flavor;
