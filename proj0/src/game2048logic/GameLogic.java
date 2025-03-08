@@ -56,8 +56,9 @@ public class GameLogic {
      * @param board     the current state of the board.
      */
     public static void tiltUp(int[][] board) {
-        // TODO: fill this in in task 6
-        return;
+        for (int i = 0; i < board.length; i++) {
+            tiltColumn(board, i);
+        }
     }
 
     /**
