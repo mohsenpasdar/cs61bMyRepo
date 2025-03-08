@@ -1,8 +1,6 @@
 package game2048logic;
 
 import game2048rendering.Side;
-import static game2048logic.MatrixUtils.rotateLeft;
-import static game2048logic.MatrixUtils.rotateRight;
 
 /**
  * @author  Josh Hug
@@ -44,9 +42,9 @@ public class GameLogic {
      * @param c         the column to tilt up.
      */
     public static void tiltColumn(int[][] board, int c) {
-        int currentMinR = 0;
+        int minR = 0;
         for (int i = 1; i < board.length; i++) {
-            currentMinR = moveTileUpAsFarAsPossible(board, i, c, currentMinR);
+            minR += moveTileUpAsFarAsPossible(board, i, c, minR);
         }
     }
 
@@ -69,15 +67,51 @@ public class GameLogic {
      * @param side  the direction to tilt
      */
     public static void tilt(int[][] board, Side side) {
-        // TODO: fill this in in task 7
         if (side == Side.EAST) {
-            return;
+            boardTransformation(board, side);
+            tiltUp(board);
+            boardTransformation(board, Side.WEST);
         } else if (side == Side.WEST) {
-            return;
+            boardTransformation(board, side);
+            tiltUp(board);
+            boardTransformation(board, Side.EAST);;
         } else if (side == Side.SOUTH) {
-            return;
+            boardTransformation(board, side);
+            tiltUp(board);
+            boardTransformation(board, Side.SOUTH);;
         } else {
-            return;
+            tiltUp(board);
         }
+    }
+
+    public static void boardTransformation(int[][] board, Side side) {
+        int size = board.length;
+        int[][] transformedBoard = new int[size][size];
+        
+        // First copy to temp array
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                int xVal = side.x(i, j, size);
+                int yVal = side.y(i, j, size);
+                transformedBoard[i][j] = board[xVal][yVal];
+            }
+        }
+        
+        // Copy back to original board
+        for (int i = 0; i < size; i++) {
+            System.arraycopy(transformedBoard[i], 0, board[i], 0, size);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] before = new int[][]{
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+                {2, 2, 0, 4},
+        };
+        tilt(before, Side.WEST);
+        System.out.printf(String.valueOf(before.length));
+
     }
 }

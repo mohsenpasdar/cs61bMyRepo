@@ -119,4 +119,30 @@ public class TestTask5 {
 
         assertWithMessage("Boards should match:").that(TestUtils.boardToString(board)).isEqualTo(TestUtils.boardToString(expected));
    }
+
+    /** Checks that a column tilt won't merge merged tiles. */
+    @Test
+    @Tag("task5")
+    @Order(4)
+    @DisplayName("no merge with merged")
+    @GradedTest(number = "5.4")
+    public void testNoMergeWithMergedCol2() {
+        int[][] board = new int[][]{
+                {0, 0, 2, 0},
+                {0, 0, 2, 0},
+                {0, 0, 0, 0},
+                {0, 0, 4, 0},
+        };
+
+        GameLogic.tiltColumn(board, 2);
+
+        int[][] expected = new int[][]{
+                {0, 0, 4, 0},
+                {0, 0, 4, 0},
+                {0, 0, 0, 0},
+                {0, 0, 0, 0},
+        };
+
+        assertWithMessage("Boards should match:").that(TestUtils.boardToString(board)).isEqualTo(TestUtils.boardToString(expected));
+    }
 }
