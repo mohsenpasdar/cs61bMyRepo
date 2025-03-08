@@ -44,8 +44,10 @@ public class GameLogic {
      * @param c         the column to tilt up.
      */
     public static void tiltColumn(int[][] board, int c) {
-        // TODO: fill this in in task 5
-        return;
+        int currentMinR = 0;
+        for (int i = 1; i < board.length; i++) {
+            currentMinR = moveTileUpAsFarAsPossible(board, i, c, currentMinR);
+        }
     }
 
     /**
