@@ -19,7 +19,7 @@ public class GameLogic {
     public static int moveTileUpAsFarAsPossible(int[][] board, int r, int c, int minR) {
         while (r - 1 >= minR && board[r][c] != 0) {
             if (board[r - 1][c] == 0) {
-                board[r-1][c] = board[r][c];
+                board[r - 1][c] = board[r][c];
                 board[r][c] = 0;
                 r--;
             } else {
@@ -77,11 +77,11 @@ public class GameLogic {
         } else if (side == Side.WEST) {
             boardTransformation(board, side);
             tiltUp(board);
-            boardTransformation(board, Side.EAST);;
+            boardTransformation(board, Side.EAST);
         } else if (side == Side.SOUTH) {
             boardTransformation(board, side);
             tiltUp(board);
-            boardTransformation(board, Side.SOUTH);;
+            boardTransformation(board, Side.SOUTH);
         } else {
             tiltUp(board);
         }
@@ -104,17 +104,5 @@ public class GameLogic {
         for (int i = 0; i < size; i++) {
             System.arraycopy(transformedBoard[i], 0, board[i], 0, size);
         }
-    }
-
-    public static void main(String[] args) {
-        int[][] before = new int[][]{
-                {0, 0, 0, 0},
-                {0, 0, 0, 0},
-                {0, 0, 0, 0},
-                {2, 2, 0, 4},
-        };
-        tilt(before, Side.WEST);
-        System.out.printf(String.valueOf(before.length));
-
     }
 }
